@@ -29,8 +29,6 @@ function Orders() {
         return () => ws.close();
     }, []);
 
-    console.log(orders)
-
     return (
         <div className="min-h-screen bg-gray-100 p-6">
             <div className="mx-auto max-w-full">
