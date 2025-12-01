@@ -72,27 +72,55 @@ function Orders() {
                         <tbody>
                             {orders.map(order => (
                                 <tr key={order.id} className="border-b hover:bg-gray-50">
-                                    <td className="px-4 py-3">{order.id}</td>
-                                    <td className="px-4 py-3">{order.symbol}</td>
-                                    <td className="px-4 py-3">{order.order_id}</td>
-                                    <td className="px-4 py-3">{order.side}</td>
-                                    <td className="px-4 py-3">{order.leverage}</td>
-                                    <td className="px-4 py-3">{order.amount_usdt}</td>
-                                    <td className="px-4 py-3">{order.open_time}</td>
-                                    <td className="px-4 py-3">{order.open_price}</td>
-                                    <td className="px-4 py-3">{order.ai_prediction}</td>
-                                    <td className="px-4 py-3">{order.latest_update_time}</td>
-                                    <td className="px-4 py-3">{order.latest_price}</td>
-                                    <td className="px-4 py-3">{order.tlsl}</td>
-                                    <td className="px-4 py-3">{order.status}</td>
-                                    <td className="px-4 py-3">{order.close_reason}</td>
-                                    <td className="px-4 py-3">{order.close_price}</td>
+                                    <td className="px-4 py-3" data-column="id">{order.id}</td>
+                                    <td className="px-4 py-3" data-column="symbol">{order.symbol}</td>
+                                    <td className="px-4 py-3" data-column="order_id">{order.order_id}</td>
+                                    <td className="px-4 py-3" data-column="side">{order.side}</td>
+                                    <td className="px-4 py-3" data-column="leverage">{order.leverage}</td>
+                                    <td className="px-4 py-3" data-column="amount_usdt">{order.amount_usdt}</td>
+                                    <td className="px-4 py-3" data-column="open_time">
+                                        {new Date(order.open_time * 1000).toLocaleString(undefined, {
+                                            year: 'numeric',
+                                            month: 'short',
+                                            day: 'numeric',
+                                            hour: '2-digit',
+                                            minute: '2-digit',
+                                            hour12: false
+                                        })}
+                                    </td>
+                                    <td className="px-4 py-3" data-column="open_price">{order.open_price}</td>
+                                    <td className="px-4 py-3" data-column="ai_prediction">{order.ai_prediction}</td>
+                                    <td className="px-4 py-3" data-column="latest_update_time">
+                                        {new Date(order.latest_update_time * 1000).toLocaleString(undefined, {
+                                            year: 'numeric',
+                                            month: 'short',
+                                            day: 'numeric',
+                                            hour: '2-digit',
+                                            minute: '2-digit',
+                                            hour12: false
+                                        })}
+                                    </td>
+                                    <td className="px-4 py-3" data-column="latest_price">{order.latest_price}</td>
+                                    <td className="px-4 py-3" data-column="tlsl">{order.tlsl}</td>
+                                    <td 
+                                        className={`px-4 py-3 ${
+                                            order.status === 'open' ? 'text-blue-600 font-semibold'
+                                            : order.status === 'filled' ? 'text-green-600 font-semibold'
+                                            : order.status === 'closed' ? 'text-stone-400 font-semibold'
+                                            : order.status === 'cancelled' ? 'text-orange-500 font-semibold'
+                                            : ''
+                                        }`}
+                                        data-column="status">
+                                        {order.status}
+                                    </td>
+                                    <td className="px-4 py-3" data-column="close_reason">{order.close_reason}</td>
+                                    <td className="px-4 py-3" data-column="close_price">{order.close_price}</td>
                                     <td className={`px-4 py-3 ${order.pnl_usdt > 0
                                             ? 'text-green-600'
                                             : order.pnl_usdt < 0
                                                 ? 'text-red-600'
                                                 : ''
-                                        }`}>
+                                        }`} data-column="pnl_usdt">
                                         {order.pnl_usdt}
                                     </td>
                                     <td className={`px-4 py-3 ${order.pnl_percent > 0
@@ -100,10 +128,10 @@ function Orders() {
                                             : order.pnl_percent < 0
                                                 ? 'text-red-600'
                                                 : ''
-                                        }`}>
+                                        }`} data-column="pnl_percent">
                                         {order.pnl_percent}
                                     </td>
-                                    <td className="px-4 py-3">{order.note}</td>
+                                    <td className="px-4 py-3" data-column="note">{order.note}</td>
                                 </tr>
                             ))}
                         </tbody>
