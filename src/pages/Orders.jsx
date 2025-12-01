@@ -79,7 +79,7 @@ function Orders() {
                                     <td className="px-4 py-3" data-column="leverage">{order.leverage}</td>
                                     <td className="px-4 py-3" data-column="amount_usdt">{order.amount_usdt}</td>
                                     <td className="px-4 py-3" data-column="open_time">
-                                        {new Date(order.open_time * 1000).toLocaleString(undefined, {
+                                        {new Date(order.open_time).toLocaleString(undefined, {
                                             year: 'numeric',
                                             month: 'short',
                                             day: 'numeric',
@@ -91,7 +91,7 @@ function Orders() {
                                     <td className="px-4 py-3" data-column="open_price">{order.open_price}</td>
                                     <td className="px-4 py-3" data-column="ai_prediction">{order.ai_prediction}</td>
                                     <td className="px-4 py-3" data-column="latest_update_time">
-                                        {new Date(order.latest_update_time * 1000).toLocaleString(undefined, {
+                                        {new Date(order.latest_update_time).toLocaleString(undefined, {
                                             year: 'numeric',
                                             month: 'short',
                                             day: 'numeric',
